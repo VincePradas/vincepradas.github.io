@@ -25,6 +25,22 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+  // Close menu when clicking outside (optional)
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        menuOpen &&
+        event.target &&
+        !(event.target as Element).closest('header')
+      ) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [menuOpen]);
+
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 bg-white/80 dark:bg-background/80 backdrop-blur-md transition-transform duration-500 ${
@@ -65,49 +81,57 @@ export default function Header() {
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden p-2 rounded-md hover:bg-gray-200 dark:hover:bg-zinc-800 transition"
+            aria-label="Toggle menu"
           >
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
+      {/* Mobile Menu Dropdown */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-500 flex justify-end mx-5 ${
+        className={`md:hidden overflow-hidden transition-all duration-300 ${
           menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <nav className="flex flex-col items-end text-right gap-4 py-4 bg-white dark:bg-background border-t border-gray-300 dark:border-zinc-700 px-4">
+        <nav
+          className="flex flex-col items-end text-right gap-4 py-6 px-6 
+                    bg-white/10 dark:bg-background/95 
+                    backdrop-blur-xl backdrop-saturate-150 
+                    border-t border-gray-200 dark:border-zinc-700
+                    shadow-lg"
+        >
           <a
             href="#hero"
-            className="hover:underline"
+            className="text-base transition-colors py-1"
             onClick={() => setMenuOpen(false)}
           >
             Home
           </a>
           <a
             href="#about"
-            className="hover:underline"
+            className="text-base transition-colors py-1"
             onClick={() => setMenuOpen(false)}
           >
             About
           </a>
           <a
             href="#projects"
-            className="hover:underline"
+            className="text-base transition-colors py-1"
             onClick={() => setMenuOpen(false)}
           >
             Projects
           </a>
           <a
             href="#skills"
-            className="hover:underline"
+            className="text-base transition-colors py-1"
             onClick={() => setMenuOpen(false)}
           >
             Skills
           </a>
           <a
             href="#services"
-            className="hover:underline"
+            className="text-base transition-colors py-1"
             onClick={() => setMenuOpen(false)}
           >
             Services

@@ -43,7 +43,7 @@ export default function Hero() {
             />
           </div>
 
-          <div className="border-t-2 border-dashed lg:border-t-0 border-primary/25 py-3 flex flex-row justify-around lg:justify-between items-center">
+          <div className="lg:border-t-2 lg:border-dashed border-t-0 border-primary/25 py-3 flex flex-row justify-around lg:justify-between items-center">
             <div className="flex flex-col items-center lg:items-start gap-y-2">
               <p className="text-sm text-center">Projects Made</p>
               <p className="text-3xl">10+</p>
