@@ -55,7 +55,7 @@ export default function Hero() {
           </div>
 
           <p className="max-w-xl opacity-75 text-sm sm:text-base leading-relaxed px-2 sm:px-0">
-            Building web apps is my jam — from clicking buttons on the frontend
+            Building web apps and mobile apps is my jam — from clicking buttons on the frontend
             to handling data on the backend, I like seeing ideas come to life.
           </p>
 
