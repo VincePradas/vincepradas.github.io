@@ -6,9 +6,9 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === "production" ? "/portfolio" : "",
+  basePath: process.env.NODE_ENV === "production" ? "" : "",
   assetPrefix:
-    process.env.NODE_ENV === "production" ? "/portfolio" : "",
+    process.env.NODE_ENV === "production" ? "" : "",
 };
 
 export default nextConfig;
