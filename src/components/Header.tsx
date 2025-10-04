@@ -50,7 +50,7 @@ export default function Header() {
       <div className="p-2 flex justify-between items-center mx-2">
         {/* Logo / Title */}
         <div className="flex items-center gap-3 px-2">
-          <div className="font-bold text-lg">Logo</div>
+          <div className="font-bold text-lg">vXw</div>
           <div className="text-sm text-muted-foreground">vinXwarren</div>
         </div>
 
