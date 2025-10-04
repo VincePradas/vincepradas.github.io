@@ -1,7 +1,7 @@
 "use client";
-
 import { RotatingText } from "@/components/ui/shadcn-io/rotating-text/index";
 import { useTheme } from "next-themes";
+import { useRef } from "react";
 import Image from "next/image.js";
 import me from "@/assets/imgs/asdsa.png";
 import meHover from "@/assets/imgs/asdsa1.png";
@@ -13,18 +13,21 @@ export default function Hero() {
   const { theme, systemTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
   const isDarkMode = currentTheme === "dark";
+  const heroRef = useRef<HTMLDivElement>(null);
 
   return (
     <section
       id="hero"
       className="text-sans relative overflow-hidden snap-start scrollbar-hide"
+      ref={heroRef}
     >
       <AutoMovingCursor
         size={28}
         color="#3b82f6"
         speed={10}
         label="Developer"
-        triangleSize={30} 
+        triangleSize={30}
+        containerRef={heroRef}
       />
       <div className=" min-h-screen flex flex-col lg:flex-row items-center justify-center lg:justify-between px-4 sm:px-6 lg:px-20 py-8 gap-8 lg:gap-10 relative z-10">
         {/* Left Content */}

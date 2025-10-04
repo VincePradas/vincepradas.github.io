@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from "react";
 
 interface AutoMovingCursorProps {
   size?: number;
@@ -7,21 +7,45 @@ interface AutoMovingCursorProps {
   speed?: number;
   label?: string;
   triangleSize?: number;
+  containerRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 export default function AutoMovingCursor({
   size = 24,
-  color = '#3b82f6',
+  color = "#3b82f6",
   speed = 5,
   label = "Developer",
-  triangleSize = 30 // Even smaller
+  triangleSize = 30,
+  containerRef,
 }: AutoMovingCursorProps) {
   const cursorRef = useRef<HTMLDivElement>(null);
   const labelRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number | null>(null);
+  const [isHeroVisible, setIsHeroVisible] = useState(false);
 
   useEffect(() => {
-    if (!cursorRef.current) return;
+    const checkHeroVisibility = () => {
+      const heroSection = document.getElementById("hero");
+      if (heroSection) {
+        const rect = heroSection.getBoundingClientRect();
+
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        setIsHeroVisible(isVisible);
+      }
+    };
+
+    checkHeroVisibility();
+    window.addEventListener("scroll", checkHeroVisibility);
+    window.addEventListener("resize", checkHeroVisibility);
+
+    return () => {
+      window.removeEventListener("scroll", checkHeroVisibility);
+      window.removeEventListener("resize", checkHeroVisibility);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!cursorRef.current || !isHeroVisible) return;
 
     let startTime: number;
     const cursor = cursorRef.current;
@@ -30,42 +54,57 @@ export default function AutoMovingCursor({
     const animate = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
       const elapsed = timestamp - startTime;
-      
+
       const progress = (elapsed % (speed * 1000)) / (speed * 1000);
-      
+
       let x, y;
-      
-      // Very small centered triangle
+
       const centerX = 50;
       const centerY = 50;
       const radius = triangleSize / 2;
-      
+
       if (progress < 0.33) {
-        // Top to right
         const segmentProgress = progress / 0.33;
-        x = centerX + (radius * Math.cos(-Math.PI/2 + (segmentProgress * 2*Math.PI/3)));
-        y = centerY + (radius * Math.sin(-Math.PI/2 + (segmentProgress * 2*Math.PI/3)));
+        x =
+          centerX +
+          radius * Math.cos(-Math.PI / 2 + (segmentProgress * 2 * Math.PI) / 3);
+        y =
+          centerY +
+          radius * Math.sin(-Math.PI / 2 + (segmentProgress * 2 * Math.PI) / 3);
       } else if (progress < 0.66) {
-        // Right to bottom-left
         const segmentProgress = (progress - 0.33) / 0.33;
-        x = centerX + (radius * Math.cos(Math.PI/6 + (segmentProgress * 2*Math.PI/3)));
-        y = centerY + (radius * Math.sin(Math.PI/6 + (segmentProgress * 2*Math.PI/3)));
+        x =
+          centerX +
+          radius * Math.cos(Math.PI / 6 + (segmentProgress * 2 * Math.PI) / 3);
+        y =
+          centerY +
+          radius * Math.sin(Math.PI / 6 + (segmentProgress * 2 * Math.PI) / 3);
       } else {
-        // Bottom-left back to top
         const segmentProgress = (progress - 0.66) / 0.34;
-        x = centerX + (radius * Math.cos(5*Math.PI/6 + (segmentProgress * 2*Math.PI/3)));
-        y = centerY + (radius * Math.sin(5*Math.PI/6 + (segmentProgress * 2*Math.PI/3)));
+        x =
+          centerX +
+          radius *
+            Math.cos((5 * Math.PI) / 6 + (segmentProgress * 2 * Math.PI) / 3);
+        y =
+          centerY +
+          radius *
+            Math.sin((5 * Math.PI) / 6 + (segmentProgress * 2 * Math.PI) / 3);
       }
 
-      // Convert percentage to pixels
-      const viewportX = (x / 100) * window.innerWidth;
-      const viewportY = (y / 100) * window.innerHeight;
+      let viewportX, viewportY;
 
-      // Update cursor position
+      if (containerRef?.current) {
+        const containerRect = containerRef.current.getBoundingClientRect();
+        viewportX = containerRect.left + (x / 100) * containerRect.width;
+        viewportY = containerRect.top + (y / 100) * containerRect.height;
+      } else {
+        viewportX = (x / 100) * window.innerWidth;
+        viewportY = (y / 100) * window.innerHeight;
+      }
+
       cursor.style.left = `${viewportX}px`;
       cursor.style.top = `${viewportY}px`;
 
-      // Update label position
       if (label) {
         label.style.left = `${viewportX + 20}px`;
         label.style.top = `${viewportY + 20}px`;
@@ -84,18 +123,22 @@ export default function AutoMovingCursor({
       animationRef.current = requestAnimationFrame(animate);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
-  }, [speed, triangleSize]);
+  }, [speed, triangleSize, containerRef, isHeroVisible]);
+
+  if (!isHeroVisible) {
+    return null;
+  }
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-50">
+    <div className="fixed inset-0 pointer-events-none z-30">
       <div
         ref={cursorRef}
         className="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-100"
