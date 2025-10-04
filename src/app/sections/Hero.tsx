@@ -1,8 +1,34 @@
+"use client";
+
 import { RotatingText } from "@/components/ui/shadcn-io/rotating-text/index";
+import { useState, useEffect } from "react";
 import Image from "next/image.js";
 import me from "@/assets/imgs/asdsa.png";
-
+import meHover from "@/assets/imgs/asdsa1.png";
+import { useTheme } from "next-themes";
 export default function Hero() {
+  const [isHovered, setIsHovered] = useState(false);
+  const { theme, systemTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const currentTheme = theme === "system" ? systemTheme : theme;
+
+  const isDarkMode = currentTheme === "dark";
+
+  const imageSrc = !mounted
+    ? me
+    : isHovered
+    ? isDarkMode
+      ? meHover
+      : me
+    : isDarkMode
+    ? me
+    : meHover;
+
   return (
     <section id="hero" className="text-sans">
       {/* Left */}
@@ -33,9 +59,13 @@ export default function Hero() {
 
         {/* Right */}
         <div className="flex flex-col gap-y-6">
-          <div className="relative h-75 w-100 lg:h-95 lg:w-125 center lg:block border-2 border-dashed border-primary/25">
+          <div
+            className="relative h-75 w-100 lg:h-95 lg:w-125 center lg:block border-2 border-dashed border-primary/25"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             <Image
-              src={me}
+              src={imageSrc}
               alt="me"
               fill
               style={{ objectFit: "contain" }}
