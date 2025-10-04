@@ -73,7 +73,7 @@ export default function Hero() {
         <div className="flex flex-col gap-6 w-full lg:w-auto items-center">
           {/* Image Container */}
           <div
-            className="relative h-55 w-70 sm:h-75 sm:w-100 lg:h-95 lg:w-125 border-2 border-dashed border-primary/25 rounded-lg"
+            className="relative h-65 w-85 sm:h-75 sm:w-100 lg:h-95 lg:w-125 border-2 border-dashed border-primary/25 rounded-lg"
             onMouseEnter={() => !isMobile && setIsHovered(true)}
             onMouseLeave={() => !isMobile && setIsHovered(false)}
             onTouchStart={() => setIsHovered(true)}
