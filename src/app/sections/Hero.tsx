@@ -1,4 +1,4 @@
-import { RotatingText } from "@/components/ui/rotating-text";
+import { RotatingText } from "@/components/ui/shadcn-io/rotating-text/index";
 import Image from "next/image.js";
 import me from "@/assets/imgs/asdsa.png";
 
@@ -25,7 +25,7 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-wrap gap-5 mt-5">
-          <button className="py-2 px-6 border border-black bg-black text-white dark:bg-white dark:text-black">
+          <button className="py-2 px-6 border border-black bg-black text-white dark:bg-white dark:text-black dark:border-white">
             Download CV
           </button>
           <button className="py-2 px-6 border border-black dark:border-white">
@@ -38,7 +38,7 @@ export default function Hero() {
       <div className="flex flex-col gap-y-6">
         <div className="relative h-75 w-100 lg:h-95 lg:w-125 center lg:block border-2 border-dashed border-primary/25">
           <Image
-            src={me}
+            src={me }
             alt="me"
             fill
             style={{ objectFit: "contain" }}

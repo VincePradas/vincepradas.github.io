@@ -1,7 +1,7 @@
 "use client";
 
 import { Moon, Sun } from "lucide-react";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
@@ -29,6 +29,12 @@ export const ThemeToggleButton = ({
   className,
 }: ThemeToggleButtonProps) => {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // Ensure we only render after component mounts on client
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleClick = useCallback(() => {
     setTheme(theme === "light" ? "dark" : "light");
@@ -89,6 +95,25 @@ export const ThemeToggleButton = ({
       }, 3000);
     }
   }, [theme, setTheme, variant, start]);
+
+  // During SSR, render a placeholder with consistent structure
+  if (!mounted) {
+    return (
+      <Button
+        variant="outline"
+        size={showLabel ? "default" : "icon"}
+        className={cn(
+          "relative overflow-hidden transition-all",
+          showLabel && "gap-2",
+          className
+        )}
+        aria-label="Switch theme"
+      >
+        <Sun className="h-5 w-5" />
+        {showLabel && <span className="text-sm">Light</span>}
+      </Button>
+    );
+  }
 
   return (
     <Button

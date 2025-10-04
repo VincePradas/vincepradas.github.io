@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { ThemeToggleButton } from "../components/ui/ToggleButton";
+import { ThemeToggleButton } from "./ui/shadcn-io/ToggleButton";
 
 export default function Header() {
   const [hidden, setHidden] = useState(false);

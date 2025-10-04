@@ -1,33 +1,33 @@
-'use client';
- 
-import * as React from 'react';
+"use client";
+
+import * as React from "react";
 import {
   AnimatePresence,
   motion,
   type HTMLMotionProps,
   type Transition,
-} from 'motion/react';
- 
-import { cn } from '@repo/shadcn-ui/lib/utils';
- 
+} from "motion/react";
+
+import { cn } from "@/lib/utils";
+
 type RotatingTextProps = {
   text: string | string[];
   duration?: number;
   transition?: Transition;
   y?: number;
   containerClassName?: string;
-} & HTMLMotionProps<'div'>;
- 
+} & HTMLMotionProps<"div">;
+
 function RotatingText({
   text,
   y = -50,
   duration = 2000,
-  transition = { duration: 0.3, ease: 'easeOut' },
+  transition = { duration: 0.3, ease: "easeOut" },
   containerClassName,
   ...props
 }: RotatingTextProps) {
   const [index, setIndex] = React.useState(0);
- 
+
   React.useEffect(() => {
     if (!Array.isArray(text)) return;
     const interval = setInterval(() => {
@@ -35,11 +35,16 @@ function RotatingText({
     }, duration);
     return () => clearInterval(interval);
   }, [text, duration]);
- 
+
   const currentText = Array.isArray(text) ? text[index] : text;
- 
+
   return (
-    <div className={cn('overflow-hidden py-1', containerClassName)}>
+    <div
+      className={`${cn(
+        "overflow-hidden",
+        containerClassName
+      )} text-3xl lg:text-[3.5rem]`}
+    >
       <AnimatePresence mode="wait">
         <motion.div
           key={currentText}
@@ -55,5 +60,5 @@ function RotatingText({
     </div>
   );
 }
- 
+
 export { RotatingText, type RotatingTextProps };
