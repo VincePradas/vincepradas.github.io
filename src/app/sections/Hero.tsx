@@ -97,7 +97,7 @@ export default function Hero() {
         </div>
         <div className="absolute bottom-0 right-0 left-0 hidden lg:block ">
           <ScrollVelocity
-            texts={["UI/UX DESIGN ", "SCROLL DOWN"]}
+            texts={["SOFTWARE DEVELOPER", "SCROLL DOWN"]}
             velocity={50}
             className="custom-scroll-text"
           />
