@@ -18,7 +18,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="text-sans relative overflow-hidden snap-start scrollbar-hide"
+      className="text-sans relative overflow-hidden scrollbar-hide"
       ref={heroRef}
     >
       <AutoMovingCursor

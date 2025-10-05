@@ -1,14 +1,15 @@
 import Header from "../components/Header";
 import Hero from "./sections/Hero";
 import About from "./sections/About";
+import Project from "./sections/Projects";
+import '@/styles/scrollBar.css'
 export default function App() {
   return (
-    <div className="bg-white dark:bg-background h-fit text-primary font-sans">
+    <div className="bg-white dark:bg-background h-fit text-primary overflow-hidden font-sans">
       <Header/>
-      <div className="snap-y snap-mandatory h-screen overflow-y-auto no-scrollbar">
-        <Hero/>
-        <About/>
-      </div>
+      <Hero/>
+      <About/>
+      <Project/>
     </div>
   )
 }
