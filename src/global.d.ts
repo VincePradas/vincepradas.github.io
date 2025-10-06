@@ -10,6 +10,15 @@ declare module "meshline" {
 }
 
 declare global {
+  interface Window {
+    gsap: {
+      from: (target: unknown, vars: Record<string, unknown>) => unknown;
+      to: (target: unknown, vars: Record<string, unknown>) => unknown;
+      registerPlugin: (plugin: unknown) => void;
+    };
+    ScrollTrigger: unknown;
+  }
+  
   namespace JSX {
     interface IntrinsicElements {
       meshLineGeometry: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;

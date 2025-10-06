@@ -128,9 +128,14 @@
 
 .no-scrollbar {
   -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  scrollbar-width: none; 
 }
 
 .no-scrollbar::-webkit-scrollbar {
   display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Custom font utility */
+.font-press-start {
+  font-family: 'Press Start 2P', system-ui;
 }

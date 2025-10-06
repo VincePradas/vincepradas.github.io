@@ -176,13 +176,13 @@ export default function About() {
     <section
       id="about"
       aria-label="About"
-      className="relative min-h-screen py-24 md:py-32"
+      className="relative min-h-screen pt-24 md:pt-24"
       ref={ref}
     >
       {/* SVG Background Line - Top Right */}
       <div
         ref={svgContainerRef1}
-        className="absolute top-20 right-20 pointer-events-none"
+        className="absolute top-20 right-20 pointer-events-none opacity-25"
       >
         <svg width="400" height="400" viewBox="0 0 400 400" fill="none">
           <path
@@ -211,7 +211,7 @@ export default function About() {
       {/* SVG Background Line - Bottom Left */}
       <div
         ref={svgContainerRef2}
-        className="absolute bottom-20 left-50 pointer-events-none"
+        className="absolute bottom-20 left-50 pointer-events-none opacity-25"
       >
         <svg width="400" height="400" viewBox="0 0 400 400" fill="none">
           <path
@@ -246,9 +246,15 @@ export default function About() {
         >
           {/* Header */}
           <motion.div variants={itemVariants} className="space-y-4">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-              {"<About_Me/>"}
-            </h1>
+            <motion.h1 
+              className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              {"<About />"}
+            </motion.h1>
             <p className="text-base md:text-xl text-muted-foreground max-w-2xl">
               Building digital experiences with precision and purpose
             </p>
