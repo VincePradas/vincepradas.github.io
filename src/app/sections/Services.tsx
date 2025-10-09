@@ -372,7 +372,20 @@ export default function Services() {
                         </li>
                       ))}
                     </ul>
-                    <button className="w-full mt-4 py-2 px-4 bg-foreground text-background text-sm rounded-lg hover:bg-foreground/80 transition-all duration-300">
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const contactElement =
+                          document.getElementById("contact");
+                        if (contactElement) {
+                          contactElement.scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          console.log("Contact section not found");
+                        }
+                      }}
+                      className="w-full mt-4 py-2 px-4 bg-foreground text-background text-sm rounded-lg hover:bg-foreground/80 transition-all duration-300"
+                    >
                       Get Started
                     </button>
                   </div>
