@@ -26,14 +26,14 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
 - **Projects Section** - Featured work and case studies
 - **Header Navigation** - Smooth navigation with scroll indicators
 
-### 🛠 **Technology Showcase**
+### **Technology Showcase**
 - **10 categories** of skills and tools
 - **100+ technologies** with distinctive B&W icons
 - **Smart abbreviation system** for easy recognition
 - **Hover effects** and smooth transitions
 - **Theme-compatible icons** that work in both light and dark modes
 
-## 🏗 **Tech Stack**
+## **Tech Stack**
 
 ### **Core Framework**
 - **Next.js 15.5.4** - React framework with App Router
@@ -61,7 +61,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
 - **Math.js** - Advanced mathematics
 - **LDRS** - Loading animations
 
-## 🚀 **Getting Started**
+## **Getting Started**
 
 ### **Prerequisites**
 - Node.js 18+ 
