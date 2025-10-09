@@ -527,7 +527,7 @@ export default function Services() {
               className="py-3 px-8 border-2 border-foreground/50 text-foreground rounded-lg hover:bg-foreground/5 hover:border-foreground transition-all duration-300 font-medium relative z-50"
               type="button"
             >
-              View Portfolio
+              View Projects
             </motion.button>
           </div>
         </div>

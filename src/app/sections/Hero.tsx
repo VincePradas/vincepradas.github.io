@@ -49,7 +49,19 @@ export default function Hero() {
             <button className="py-2 px-5 sm:px-6 border border-black bg-black text-white dark:bg-white dark:text-black dark:border-white text-sm sm:text-base rounded-lg transition-colors duration-200">
               Download CV
             </button>
-            <button className="py-2 px-5 sm:px-6 border border-black dark:border-white text-sm sm:text-base rounded-lg transition-colors duration-200 hover:bg-gray-100 dark:hover:bg-gray-800">
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const contactElement = document.getElementById("contact");
+                if (contactElement) {
+                  contactElement.scrollIntoView({ behavior: "smooth" });
+                } else {
+                  console.log("Contact section not found");
+                }
+              }}
+              className="py-2 px-5 sm:px-6 border border-black dark:border-white text-sm sm:text-base rounded-lg transition-colors duration-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
               Get in Touch
             </button>
           </div>
