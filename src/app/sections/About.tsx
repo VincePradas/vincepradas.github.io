@@ -3,6 +3,8 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   SiReact,
   SiNextdotjs,
@@ -15,16 +17,8 @@ import {
   SiGit,
 } from "react-icons/si";
 import LogoLoop from "@/components/LogoLoop";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const ANIMATION_CONFIG = {
-  staggerDelay: 0.15,
-  duration: 0.5,
-  ease: "easeOut",
-} as const;
 
 const techLogos = [
   {
@@ -74,6 +68,60 @@ const techLogos = [
   },
 ];
 
+const ANIMATION_CONFIG = {
+  staggerDelay: 0.15,
+  duration: 0.5,
+  ease: "easeOut",
+} as const;
+
+const techStack = [
+  "React",
+  "Next.js",
+  "TypeScript",
+  "Node.js",
+  "Tailwind CSS",
+  "MongoDB",
+  "Express",
+  "AWS S3",
+  "Git",
+  "REST API",
+];
+
+const currentFocus = [
+  "Full-Stack Development",
+  "Performance Optimization",
+  "Clean Architecture",
+  "Developer Experience",
+  "System Design",
+  "Code Quality",
+];
+
+const developerPrinciples = [
+  { title: "Performance", desc: "Optimized & efficient" },
+  { title: "Security", desc: "Safe & reliable" },
+  { title: "Quality", desc: "Clean & maintainable" },
+  { title: "Scalability", desc: "Future-proof design" },
+];
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: ANIMATION_CONFIG.staggerDelay },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: ANIMATION_CONFIG.duration,
+      ease: ANIMATION_CONFIG.ease,
+    },
+  },
+};
+
 export default function About() {
   const svgContainerRef1 = useRef<HTMLDivElement>(null);
   const svgContainerRef2 = useRef<HTMLDivElement>(null);
@@ -87,10 +135,9 @@ export default function About() {
     if (!container1 && !container2) return;
 
     const scrollContainer = document.querySelector(".overflow-y-auto");
-    
+
     const animateContainer = (container: HTMLDivElement) => {
-      const paths = container.querySelectorAll('path');
-      
+      const paths = container.querySelectorAll("path");
       paths.forEach((path, index) => {
         const pathLength = path.getTotalLength();
 
@@ -123,55 +170,6 @@ export default function About() {
     };
   }, []);
 
-  const techStack = [
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Node.js",
-    "Tailwind CSS",
-    "MongoDB",
-    "Express",
-    "AWS S3",
-    "Git",
-    "REST API",
-  ];
-
-  const currentFocus = [
-    "Full-Stack Development",
-    "Performance Optimization",
-    "Clean Architecture",
-    "Developer Experience",
-    "System Design",
-    "Code Quality",
-  ];
-
-  const developerPrinciples = [
-    { title: "Performance", desc: "Optimized & efficient" },
-    { title: "Security", desc: "Safe & reliable" },
-    { title: "Quality", desc: "Clean & maintainable" },
-    { title: "Scalability", desc: "Future-proof design" },
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: ANIMATION_CONFIG.staggerDelay },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: ANIMATION_CONFIG.duration,
-        ease: ANIMATION_CONFIG.ease,
-      },
-    },
-  };
-
   return (
     <section
       id="about"
@@ -185,55 +183,23 @@ export default function About() {
         className="absolute top-20 right-20 pointer-events-none opacity-25"
       >
         <svg width="400" height="400" viewBox="0 0 400 400" fill="none">
-          <path
-            d="M0,100 L400,100"
-            stroke="#5984F8"
-            strokeWidth="2"
-          />
-          <path
-            d="M0,200 L400,200"
-            stroke="#5984F8"
-            strokeWidth="2"
-          />
-          <path
-            d="M100,0 L100,400"
-            stroke="#5984F8"
-            strokeWidth="2"
-          />
-          <path
-            d="M200,0 L200,400"
-            stroke="#5984F8"
-            strokeWidth="2"
-          />
+          <path d="M0,100 L400,100" stroke="#5984F8" strokeWidth="2" />
+          <path d="M0,200 L400,200" stroke="#5984F8" strokeWidth="2" />
+          <path d="M100,0 L100,400" stroke="#5984F8" strokeWidth="2" />
+          <path d="M200,0 L200,400" stroke="#5984F8" strokeWidth="2" />
         </svg>
       </div>
-      
+
       {/* SVG Background Line - Bottom Left */}
       <div
         ref={svgContainerRef2}
         className="absolute bottom-20 left-50 pointer-events-none opacity-25"
       >
         <svg width="400" height="400" viewBox="0 0 400 400" fill="none">
-          <path
-            d="M0,100 L400,100"
-            stroke="#5984F8"
-            strokeWidth="2"
-          />
-          <path
-            d="M0,200 L400,200"
-            stroke="#5984F8"
-            strokeWidth="2"
-          />
-          <path
-            d="M100,0 L100,400"
-            stroke="#5984F8"
-            strokeWidth="2"
-          />
-          <path
-            d="M200,0 L200,400"
-            stroke="#5984F8"
-            strokeWidth="2"
-          />
+          <path d="M0,100 L400,100" stroke="#5984F8" strokeWidth="2" />
+          <path d="M0,200 L400,200" stroke="#5984F8" strokeWidth="2" />
+          <path d="M100,0 L100,400" stroke="#5984F8" strokeWidth="2" />
+          <path d="M200,0 L200,400" stroke="#5984F8" strokeWidth="2" />
         </svg>
       </div>
 
@@ -246,7 +212,7 @@ export default function About() {
         >
           {/* Header */}
           <motion.div variants={itemVariants} className="space-y-4">
-            <motion.h1 
+            <motion.h1
               className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

@@ -25,20 +25,19 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  // Close menu when clicking outside (optional)
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         menuOpen &&
         event.target &&
-        !(event.target as Element).closest('header')
+        !(event.target as Element).closest("header")
       ) {
         setMenuOpen(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [menuOpen]);
 
   return (

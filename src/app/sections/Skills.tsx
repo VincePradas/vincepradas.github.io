@@ -163,7 +163,6 @@ export default function SkillsSection() {
   const handleCategoryClick = (categoryId: string) => {
     setActiveCategory(categoryId);
     setIsAutoPlaying(false);
-
     setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
