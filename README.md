@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website showcasing my skills, projects, and experience as a developer. Built with cutting-edge technologies and featuring smooth animations, interactive components, and a comprehensive technology showcase.
 
-## Live Demo
+## Preview
 
 **[vincepradas.github.io](https://vincepradas.github.io)**
 
