@@ -1,27 +1,25 @@
-# 🚀 Vince Pradas - Portfolio
+# Website Portfolio
 
 A modern, responsive portfolio website showcasing my skills, projects, and experience as a developer. Built with cutting-edge technologies and featuring smooth animations, interactive components, and a comprehensive technology showcase.
 
-## 🌐 Live Demo
+## Live Demo
 
 **[vincepradas.github.io](https://vincepradas.github.io)**
 
-## ✨ Features
-
-### 🎨 **Modern Design**
+### **Modern Design**
 - **Clean, minimalist interface** with black & white theme
 - **Dark/Light mode toggle** with seamless theme switching
 - **Responsive design** that works perfectly on all devices
 - **Smooth animations** powered by GSAP and Framer Motion
 
-### 🧩 **Interactive Components**
+### **Interactive Components**
 - **Auto-moving cursor** with dynamic tracking
 - **Scroll-based animations** and parallax effects
 - **3D elements** using React Three Fiber
 - **Smooth scrolling** with Lenis
 - **Logo loop animations** and velocity-based scroll effects
 
-### 📱 **Portfolio Sections**
+### **Portfolio Sections**
 - **Hero Section** - Eye-catching introduction with animated elements
 - **About Section** - Personal background and professional journey
 - **Skills Section** - Comprehensive technology showcase with 100+ tools
@@ -102,7 +100,7 @@ bun dev
 4. **Open in browser**
 Navigate to [http://localhost:3000](http://localhost:3000) to see the portfolio.
 
-## 📁 **Project Structure**
+## **Project Structure**
 
 ```
 portfolio/
@@ -132,7 +130,7 @@ portfolio/
 └── next.config.ts         # Next.js configuration
 ```
 
-## 🎯 **Key Components**
+## **Key Components**
 
 ### **Skills Section**
 - **Comprehensive Technology Grid**: 100+ technologies organized in 10 categories
@@ -151,7 +149,7 @@ portfolio/
 - **Consistent Styling**: B&W design that works perfectly in both modes
 - **Icon Adaptation**: Technology icons automatically adapt to theme changes
 
-## 🚀 **Build & Deploy**
+## **Build & Deploy**
 
 ### **Build for production**
 ```bash
@@ -166,17 +164,17 @@ This portfolio is configured for GitHub Pages deployment:
 3. **GitHub Actions** handles the deployment automatically
 4. **Live at**: [vincepradas.github.io](https://vincepradas.github.io)
 
-## 🤝 **Contributing**
+## **Contributing**
 
 Feel free to explore the code, suggest improvements, or use this as inspiration for your own portfolio!
 
-## 📞 **Connect With Me**
+## **Connect With Me**
 
 - **Portfolio**: [vincepradas.github.io](https://vincepradas.github.io)
 - **GitHub**: [@VincePradas](https://github.com/VincePradas)
 - **LinkedIn**: [Connect with me](https://linkedin.com/in/vincepradas)
 
-## 📄 **License**
+## **License**
 
 This project is open source and available under the [MIT License](LICENSE).
 
