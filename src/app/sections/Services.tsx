@@ -264,7 +264,7 @@ export default function Services() {
     <section
       id="services"
       ref={sectionRef}
-      className="min-h-screen py-20 px-4 sm:px-6 lg:px-20 relative overflow-hidden"
+      className="min-h-screen pt-5 px-4 sm:px-6 lg:px-20 relative overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-5">

@@ -11,11 +11,13 @@ import {
   FaMapMarkerAlt,
   FaLinkedin,
   FaGithub,
-  FaTwitter,
   FaPaperPlane,
   FaUser,
   FaProjectDiagram,
   FaClock,
+  FaFacebook,
+  FaCheckCircle,
+  FaCopy,
 } from "react-icons/fa";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -24,14 +26,14 @@ const contactInfo = [
   {
     icon: FaEnvelope,
     label: "Email",
-    value: "vincepradas691@gmail.com",
-    href: "mailto:vincepradas691@gmail.com",
+    value: "vincepradas.business@gmail.com",
+    href: "mailto:vincepradas.business@gmail.com",
   },
   {
     icon: FaPhone,
     label: "Phone",
-    value: "+63 XXX XXX XXXX",
-    href: "tel:+63XXXXXXXXX",
+    value: "+639305971050",
+    href: "tel:+639305971050",
   },
   {
     icon: FaMapMarkerAlt,
@@ -55,9 +57,9 @@ const socialLinks = [
     color: "hover:text-gray-800 dark:hover:text-gray-200",
   },
   {
-    icon: FaTwitter,
+    icon: FaFacebook,
     label: "Twitter",
-    href: "https://twitter.com/vincepradas",
+    href: "https://facebook.com/vince6910",
     color: "hover:text-blue-400",
   },
 ];
@@ -81,6 +83,7 @@ export default function Contact() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   useEffect(() => {
@@ -138,65 +141,24 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const emailBody = `
-        Name: ${formData.name}
+    const subject = `Project Consultation Request - ${formData.service}`;
+    const emailBody = `Name: ${formData.name}
         Email: ${formData.email}
         Service Needed: ${formData.service}
         Timeline: ${formData.timeline}
         Budget Range: ${formData.budget}
 
         Message:
-        ${formData.message}
-        `.trim();
+        ${formData.message}`;
 
-    const subject = `Project Consultation Request - ${formData.service}`;
     const mailtoLink = `mailto:vincepradas.business@gmail.com?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(emailBody)}`;
 
-    try {
-      const link = document.createElement("a");
-      link.href = mailtoLink;
-      link.target = "_blank";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+    window.location.href = mailtoLink;
 
-      alert(
-        `Thank you ${formData.name}! Your email client should open now. If it doesn't, please email me directly at: vincepradas.business@gmail.com`
-      );
-    } catch {
-      // Fallback
-      const emailDetails = `
-Please send an email to: vincepradas.business@gmail.com
+    setShowSuccess(true);
 
-Subject: ${subject}
-
-${emailBody}
-      `;
-
-      // copy to clipboard
-      if (navigator.clipboard) {
-        navigator.clipboard
-          .writeText(emailDetails)
-          .then(() => {
-            alert(
-              "Email details copied to clipboard! Please paste into your email client."
-            );
-          })
-          .catch(() => {
-            alert(
-              `Please email me directly at: vincepradas691@gmail.com\n\n${emailDetails}`
-            );
-          });
-      } else {
-        alert(
-          `Please email me directly at: vincepradas691@gmail.com\n\n${emailDetails}`
-        );
-      }
-    }
-
-    // Reset form
     setTimeout(() => {
       setFormData({
         name: "",
@@ -207,20 +169,101 @@ ${emailBody}
         message: "",
       });
       setIsSubmitting(false);
+
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 5000);
     }, 1000);
+  };
+
+  const copyEmailDetails = () => {
+    const subject = `Project Consultation Request - ${
+      formData.service || "General"
+    }`;
+    const emailBody = `Name: ${formData.name || "[Your Name]"}
+        Email: ${formData.email || "[Your Email]"}
+        Service Needed: ${formData.service || "[Service Type]"}
+        Timeline: ${formData.timeline || "[Timeline]"}
+        Budget Range: ${formData.budget || "[Budget]"}
+
+        Message:
+        ${formData.message || "[Your message here]"}`;
+
+            const emailDetails = `To: vincepradas.business@gmail.com
+        Subject: ${subject}
+
+        ${emailBody}`;
+
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(emailDetails).then(() => {
+        alert(
+          "✅ Email details copied to clipboard!\n\nYou can paste this into any email client:\n- Gmail\n- Outlook\n- Yahoo Mail\n- Apple Mail\n- Any other email app"
+        );
+      });
+    } else {
+      const textArea = document.createElement("textarea");
+      textArea.value = emailDetails;
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand("copy");
+        alert(
+          "Email details copied to clipboard!\n\nYou can paste this into any email client."
+        );
+      } catch (err) {
+        alert(`Please copy this email template:\n\n${emailDetails}`);
+      }
+      document.body.removeChild(textArea);
+    }
+  };
+
+  const openGmailCompose = () => {
+    const subject = `Project Consultation Request - ${
+      formData.service || "General"
+    }`;
+    const emailBody = `Name: ${formData.name || "[Your Name]"}
+        Email: ${formData.email || "[Your Email]"}
+        Service Needed: ${formData.service || "[Service Type]"}
+        Timeline: ${formData.timeline || "[Timeline]"}
+        Budget Range: ${formData.budget || "[Budget]"}
+
+        Message:
+        ${formData.message || "[Your message here]"}`;
+
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=vincepradas.business@gmail.com&su=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(emailBody)}`;
+
+    window.open(gmailUrl, "_blank");
   };
 
   return (
     <section
       id="contact"
       ref={sectionRef}
-      className="min-h-screen py-20 px-4 sm:px-6 lg:px-20 relative overflow-hidden"
+      className="min-h-screen py-10 px-4 sm:px-6 lg:px-20 relative overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 right-10 w-72 h-72 bg-foreground rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-20 left-10 w-96 h-96 bg-foreground rounded-full blur-3xl animate-pulse delay-1000" />
       </div>
+
+      {/* Success Message */}
+      {showSuccess && (
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -50 }}
+          className="fixed top-20 left-1/2 transform -translate-x-1/2 z-50 bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg flex items-center space-x-3"
+        >
+          <FaCheckCircle className="w-5 h-5" />
+          <span className="font-medium">
+            Email client opened! If it didn&apos;t work, use the copy button
+            below.
+          </span>
+        </motion.div>
+      )}
 
       {/* Section Title */}
       <div ref={titleRef} className="text-center mb-16">
@@ -489,49 +532,40 @@ ${emailBody}
                     >
                       <FaPaperPlane className="w-4 h-4" />
                       <span>
-                        {isSubmitting ? "Sending..." : "Send via Email Client"}
+                        {isSubmitting ? "Opening Email..." : "Send Message"}
                       </span>
                     </button>
 
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const subject = `Project Consultation Request - ${
-                          formData.service || "General"
-                        }`;
-                        const emailBody = `
-                            Name: ${formData.name || "[Your Name]"}
-                            Email: ${formData.email || "[Your Email]"}
-                            Service Needed: ${
-                              formData.service || "[Service Type]"
-                            }
-                            Timeline: ${formData.timeline || "[Timeline]"}
-                            Budget Range: ${formData.budget || "[Budget]"}
+                    <div className="grid grid-cols-2 gap-3">
+                      <button
+                        type="button"
+                        onClick={copyEmailDetails}
+                        className="py-3 border border-primary/50 text-foreground rounded-lg hover:bg-primary/5 transition-all duration-300 flex items-center justify-center space-x-2"
+                      >
+                        <FaCopy className="w-4 h-4" />
+                        <span className="text-sm">Copy Details</span>
+                      </button>
 
-                            Message:
-                            ${formData.message || "[Your message here]"}
-                        `.trim();
-
-                        const emailDetails = `To: vincepradas691@gmail.com\nSubject: ${subject}\n\n${emailBody}`;
-
-                        if (navigator.clipboard) {
-                          navigator.clipboard
-                            .writeText(emailDetails)
-                            .then(() => {
-                              alert(
-                                "Email details copied to clipboard! You can paste this into any email client."
-                              );
-                            });
-                        } else {
-                          alert(`Copy this email template:\n\n${emailDetails}`);
-                        }
-                      }}
-                      className="w-full py-3 border border-primary/50 text-foreground rounded-lg hover:bg-primary/5 transition-all duration-300 flex items-center justify-center space-x-2"
-                    >
-                      <FaEnvelope className="w-4 h-4" />
-                      <span>Copy Email Details</span>
-                    </button>
+                      <button
+                        type="button"
+                        onClick={openGmailCompose}
+                        className="py-3 border border-primary/50 text-foreground rounded-lg hover:bg-primary/5 transition-all duration-300 flex items-center justify-center space-x-2"
+                      >
+                        <FaEnvelope className="w-4 h-4" />
+                        <span className="text-sm">Open Gmail</span>
+                      </button>
+                    </div>
                   </div>
+
+                  <p className="text-xs text-center opacity-60 mt-4">
+                    Having trouble? You can also email directly at{" "}
+                    <a
+                      href="mailto:vincepradas.business@gmail.com"
+                      className="underline hover:opacity-100"
+                    >
+                      vincepradas.business@gmail.com
+                    </a>
+                  </p>
                 </form>
               </CardContent>
             </Card>
