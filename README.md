@@ -44,7 +44,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
 - **Class Variance Authority** - Component variant management
 - **Lucide React** - Beautiful icon library
 
-### **Animation & 3D**
+### **Animation**
 - **GSAP 3.13** - Professional animation library
 - **Framer Motion** - React animation library
 - **Lenis** - Smooth scrolling experience
