@@ -3,6 +3,9 @@ import Hero from "./sections/Hero";
 import About from "./sections/About";
 import Project from "./sections/Projects";
 import Skills from "./sections/Skills";
+import Services from "./sections/Services";
+import Contact from "./sections/Contact";
+
 import "@/styles/scrollBar.css";
 
 export default function App() {
@@ -13,6 +16,8 @@ export default function App() {
       <About />
       <Project />
       <Skills />
+      <Services />
+      <Contact />
     </div>
   );
 }

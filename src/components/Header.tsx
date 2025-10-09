@@ -70,6 +70,9 @@ export default function Header() {
           <a href="#services" className="hover:underline">
             Services
           </a>
+          <a href="#contact" className="hover:underline">
+            Contact
+          </a>
         </nav>
 
         {/* Right Side */}
@@ -134,6 +137,13 @@ export default function Header() {
             onClick={() => setMenuOpen(false)}
           >
             Services
+          </a>
+          <a
+            href="#contact"
+            className="text-base transition-colors py-1"
+            onClick={() => setMenuOpen(false)}
+          >
+            Contact
           </a>
         </nav>
       </div>
