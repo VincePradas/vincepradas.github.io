@@ -484,31 +484,51 @@ export default function Services() {
         transition={{ duration: 0.6, delay: 0.8 }}
         className="text-center mt-16"
       >
-        <div className="bg-foreground/5 rounded-xl p-8 backdrop-blur-sm border border-primary/20">
-          <h3 className="text-2xl sm:text-3xl font-bold mb-4">
+        <div className="bg-card/50 backdrop-blur-sm rounded-xl p-8 border-2 border-dashed border-primary/25 hover:border-primary/50 transition-all duration-300">
+          <h3 className="text-2xl sm:text-3xl font-bold mb-4 text-foreground">
             Ready to Start Your Project?
           </h3>
-          <p className="text-lg opacity-75 mb-6 max-w-2xl mx-auto">
+          <p className="text-lg text-foreground/75 mb-6 max-w-2xl mx-auto">
             Let&apos;s discuss your requirements and create something amazing
             together. I&apos;m here to help you turn your ideas into reality.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button 
-              onClick={() => {
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+            <motion.button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const contactElement = document.getElementById("contact");
+                if (contactElement) {
+                  contactElement.scrollIntoView({ behavior: "smooth" });
+                } else {
+                  console.log("Contact section not found");
+                }
               }}
-              className="py-3 px-8 bg-foreground text-background rounded-lg hover:bg-foreground/80 transition-all duration-300 transform hover:scale-105 cursor-pointer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="py-3 px-8 bg-foreground text-background rounded-lg hover:bg-foreground/80 transition-all duration-300 font-medium relative z-50"
+              type="button"
             >
               Get Free Consultation
-            </button>
-            <button 
-              onClick={() => {
-                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+            </motion.button>
+            <motion.button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const projectsElement = document.getElementById("projects");
+                if (projectsElement) {
+                  projectsElement.scrollIntoView({ behavior: "smooth" });
+                } else {
+                  console.log("Projects section not found");
+                }
               }}
-              className="py-3 px-8 border border-primary/50 rounded-lg hover:bg-primary/5 transition-all duration-300 cursor-pointer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="py-3 px-8 border-2 border-foreground/50 text-foreground rounded-lg hover:bg-foreground/5 hover:border-foreground transition-all duration-300 font-medium relative z-50"
+              type="button"
             >
               View Portfolio
-            </button>
+            </motion.button>
           </div>
         </div>
       </motion.div>

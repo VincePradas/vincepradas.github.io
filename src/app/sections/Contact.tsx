@@ -189,7 +189,7 @@ export default function Contact() {
         Message:
         ${formData.message || "[Your message here]"}`;
 
-            const emailDetails = `To: vincepradas.business@gmail.com
+    const emailDetails = `To: vincepradas.business@gmail.com
         Subject: ${subject}
 
         ${emailBody}`;
@@ -499,10 +499,6 @@ export default function Contact() {
                       className="w-full px-4 py-3 border border-primary/30 rounded-lg bg-background/50 focus:border-primary focus:outline-none transition-colors"
                     >
                       <option value="">Select budget range</option>
-                      <option value="$500-$1000">$500-$1,000</option>
-                      <option value="$1000-$3000">$1,000-$3,000</option>
-                      <option value="$3000-$5000">$3,000-$5,000</option>
-                      <option value="$5000+">$5,000+</option>
                       <option value="Let's discuss">Let&apos;s discuss</option>
                     </select>
                   </div>
