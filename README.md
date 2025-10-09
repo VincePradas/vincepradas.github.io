@@ -15,7 +15,6 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
 ### **Interactive Components**
 - **Auto-moving cursor** with dynamic tracking
 - **Scroll-based animations** and parallax effects
-- **3D elements** using React Three Fiber
 - **Smooth scrolling** with Lenis
 - **Logo loop animations** and velocity-based scroll effects
 
@@ -28,7 +27,6 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
 
 ### **Technology Showcase**
 - **10 categories** of skills and tools
-- **100+ technologies** with distinctive B&W icons
 - **Smart abbreviation system** for easy recognition
 - **Hover effects** and smooth transitions
 - **Theme-compatible icons** that work in both light and dark modes
@@ -48,16 +46,12 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
 
 ### **Animation & 3D**
 - **GSAP 3.13** - Professional animation library
-- **React Three Fiber** - 3D graphics with Three.js
-- **React Three Drei** - 3D helpers and components
-- **React Three Rapier** - Physics engine integration
 - **Framer Motion** - React animation library
 - **Lenis** - Smooth scrolling experience
 
 ### **Additional Libraries**
 - **Next Themes** - Theme switching functionality
 - **React Icons** - Extended icon collection
-- **Matter.js** - 2D physics engine
 - **Math.js** - Advanced mathematics
 - **LDRS** - Loading animations
 
@@ -140,7 +134,6 @@ portfolio/
 
 ### **Animation System**
 - **GSAP Integration**: Professional-grade animations with ScrollTrigger
-- **3D Elements**: React Three Fiber components for interactive 3D graphics
 - **Smooth Scrolling**: Lenis-powered smooth scroll experience
 - **Responsive Animations**: Optimized for all screen sizes
 
