@@ -31,7 +31,6 @@ export const ThemeToggleButton = ({
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Ensure we only render after component mounts on client
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -96,7 +95,6 @@ export const ThemeToggleButton = ({
     }
   }, [theme, setTheme, variant, start]);
 
-  // During SSR, render a placeholder with consistent structure
   if (!mounted) {
     return (
       <Button
@@ -137,4 +135,5 @@ export const ThemeToggleButton = ({
       )}
     </Button>
   );
+
 };
