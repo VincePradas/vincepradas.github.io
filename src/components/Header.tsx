@@ -46,12 +46,12 @@ export default function Header() {
         hidden ? "-translate-y-full" : "translate-y-0"
       }`}
     >
-      <div className="px-4 py-3 flex justify-between items-center max-w-7xl mx-auto">
+      <div className="px-4 py-3 flex justify-between items-center mx-auto">
         {/* Logo / Title */}
         <div className="flex items-center gap-2 px-1">
-          <div className="font-bold text-xl text-foreground">VP</div>
-          <div className="text-sm text-foreground/70 hidden sm:block">
-            Vince Pradas
+          <div className="font-bold text-xl text-foreground">vXw</div>
+          <div className="text-sm text-foreground/70">
+            vinceXwarren
           </div>
         </div>
 
