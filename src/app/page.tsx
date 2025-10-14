@@ -6,6 +6,7 @@ import Project from "./sections/Projects";
 import Skills from "./sections/Skills";
 import Services from "./sections/Services";
 import Contact from "./sections/Contact";
+import VisitCount from "@/components/VisitCount";
 
 import "@/styles/scrollBar.css";
 
@@ -20,6 +21,7 @@ export default function App() {
       <Services />
       <Contact />
       <Footer />
+      <VisitCount />
     </div>
   );
 }
