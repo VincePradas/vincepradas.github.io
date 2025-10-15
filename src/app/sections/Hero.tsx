@@ -37,7 +37,7 @@ export default function Hero() {
           </p>
           <div className="w-full max-w-xl flex justify-center lg:justify-start">
             <RotatingText
-              text={["Full-Stack Developer", "UI/UX Designer", "Freelancer"]}
+              text={["Web Developer", "Freelancer"]}
             />
           </div>
           <p className="max-w-xl opacity-75 text-sm sm:text-base leading-relaxed px-2 sm:px-0">
