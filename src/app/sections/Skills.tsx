@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
 import {
   FaReact,
   FaMobile,
@@ -134,7 +135,9 @@ export default function SkillsSection() {
   const [activeCategory, setActiveCategory] = useState(skillCategories[0].id);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   const activeCategoryData = skillCategories.find(
     (cat) => cat.id === activeCategory
@@ -169,22 +172,43 @@ export default function SkillsSection() {
   return (
     <section
       id="skills"
+      ref={sectionRef}
       className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-12"
     >
       {/* Header */}
-      <div className="text-center mb-12">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+      <motion.div 
+        className="text-center mb-12"
+        initial={{ opacity: 0, y: 30 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        transition={{ duration: 0.6 }}
+      >
+        <motion.h2 
+          className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           Technologies & Tools
-        </h2>
-        <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
+        </motion.h2>
+        <motion.p 
+          className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
           A comprehensive showcase of technologies and tools I use across
           software development
-        </p>
-      </div>
+        </motion.p>
+      </motion.div>
 
       <div className="flex flex-col lg:flex-row gap-8 ">
         {/* Flowing Menu - Left Side */}
-        <div className="lg:w-2/5 ">
+        <motion.div 
+          className="lg:w-2/5 "
+          initial={{ opacity: 0, x: -30 }}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
           <div
             ref={containerRef}
             className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 scrollbar-hide"
@@ -235,13 +259,24 @@ export default function SkillsSection() {
               );
             })}
           </div>
-        </div>
+        </motion.div>
 
         {/* Content Area - Right Side */}
-        <div className="lg:w-3/5">
+        <motion.div 
+          className="lg:w-3/5"
+          initial={{ opacity: 0, x: 30 }}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
           <div className="p-6 border-2 border-dashed bg-card/50 backdrop-blur-sm ">
             {activeCategoryData && (
-              <div className="space-y-6">
+              <motion.div 
+                className="space-y-6"
+                key={activeCategoryData.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
                 {/* Category Header */}
                 <div className="flex items-center gap-3 mb-2 ">
                   <div className="p-3 bg-primary/10 rounded-xl">
@@ -262,12 +297,16 @@ export default function SkillsSection() {
 
                 {/* Technology Grid */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 ">
-                  {activeCategoryData.technologies.map((tech) => {
+                  {activeCategoryData.technologies.map((tech, index) => {
                     const TechIconComponent = tech.icon;
                     return (
-                      <div
+                      <motion.div
                         key={tech.name}
                         className="flex flex-col items-center p-3 rounded-lg border border-border/50 bg-background/50 hover:bg-primary/5 hover:border-primary/30 transition-all duration-300 group"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.3, delay: index * 0.05 }}
+                        whileHover={{ scale: 1.05 }}
                       >
                         <div className="w-12 h-12 mb-2 flex items-center justify-center rounded-lg bg-secondary/80 text-secondary-foreground group-hover:text-primary transition-colors duration-300">
                           <TechIconComponent size={24} />
@@ -275,16 +314,21 @@ export default function SkillsSection() {
                         <span className="text-xs font-medium text-center leading-tight text-card-foreground">
                           {tech.name}
                         </span>
-                      </div>
+                      </motion.div>
                     );
                   })}
                 </div>
-              </div>
+              </motion.div>
             )}
           </div>
 
           {/* Auto-play Indicator */}
-          <div className="flex justify-center mt-4">
+          <motion.div 
+            className="flex justify-center mt-4"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+          >
             <div className="flex gap-1">
               {skillCategories.map((category) => (
                 <button
@@ -301,8 +345,13 @@ export default function SkillsSection() {
                 />
               ))}
             </div>
-          </div>
-          <div className="relative py-15 hidden lg:block border-2 border-dashed my-10">
+          </motion.div>
+          <motion.div 
+            className="relative py-15 hidden lg:block border-2 border-dashed my-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
             <Shuffle
               text="Opent to work!"
               shuffleDirection="right"
@@ -316,8 +365,8 @@ export default function SkillsSection() {
               triggerOnHover={true}
               respectReducedMotion={true}
             />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
